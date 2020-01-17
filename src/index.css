@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 code {
@@ -13,26 +13,306 @@ code {
     monospace;
 }
 
-.toggleBox{
+.app {
+  padding: 50px;
+}
+
+/* ===================================================================== */
+/* toggle button styles */
+/* ===================================================================== */
+.toggleBox {
+  box-sizing: border-box;
+  border-radius: 60px;
   box-sizing: content-box;
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;
-  height:100px;
-  width:200px;
-  /* border:5px solid red; */
-  background-color: black;
+  height: 100px;
+  width: 200px;
+  background-color: rgb(211, 202, 202);
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
 }
-.toggleBtn{
-  border: 10px solid black;
-  height:100px;
-  width:100px;
-  
+
+.toggleBtn {
+  box-sizing: border-box;
+  border: 12px solid rgb(211, 202, 202);
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
 }
-.on{
-  background-color: pink;
+
+
+.on {
+  background-color: rgb(49, 99, 236);
+  box-shadow: inset 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
-.off{
-  background-color: black;
+
+.off {
+  background-color: rgb(211, 202, 202);
+}
+
+/* -------------------------------------------------------------------- */
+/* the volumn slider style */
+/* -------------------------------------------------------------------- */
+
+/* !! ---remove default sytle--- */
+input[type=range] {
+  -webkit-appearance: none;
+  /* Hides the slider so that custom slider can be made */
+  width: 100%;
+  /* Specific width is required for Firefox. */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  /* Hides the slider so custom styles can be added */
+  border-color: transparent;
+  color: transparent;
+}
+
+/* ---remove default sytle end--- */
+
+
+/* !!----- Special styling for WebKit/Blink Thumb----- */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* border: 1px solid #000000; */
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: rgb(211, 202, 202);
+  cursor: pointer;
+  margin-top: -12px;
+  margin-left: -1px;
+  /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+  /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+  /* border: 1px solid #000000; */
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: rgb(211, 202, 202);
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+  /* border: 1px solid #000000; */
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: rgb(211, 202, 202);
+  cursor: pointer;
+}
+
+/* ----- Special styling for WebKit/Blink end ----- */
+
+/* !! --- special styling for slider track ---*/
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+  background: rgb(237, 239, 245);
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: rgb(237, 239, 245);
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+  background: rgb(237, 239, 245);
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: rgb(237, 239, 245);
+}
+
+input[type=range]::-ms-fill-upper {
+  background: rgb(49, 99, 236);
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: rgb(237, 239, 245);
+}
+
+/* --- special styling for slider track end --- */
+
+
+
+
+
+/* input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+} */
+
+/* =============================================================== */
+/* ===Key Board Button === */
+/* =============================================================== */
+
+.keyboard {
+  box-sizing: border-box;
+  width: 150px;
+  height: 120px;
+  background: rgb(211, 202, 202);
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.6), 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 35px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.keyboard:hover {
+  background: rgb(223, 218, 218);
+  font-weight: bold;
+}
+
+.mouseDown {
+  background-color: rgba(49, 99, 236, 0.8);
+  color: red;
+  font-weight: bold;
 }
