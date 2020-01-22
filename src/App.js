@@ -2,6 +2,8 @@ import React from 'react';
 import Slider from './components/slider'
 import Toggle from './components/toggle'
 import KeyBoard from './components/keyboard'
+
+import SinglePlay from './components/singlePlay'
 class App extends React.Component {
   state ={
     aKeys:["Q","W","E","A","S","D","Z","X","C"],
@@ -100,9 +102,11 @@ class App extends React.Component {
     url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
   }]
   }
-  handleSound = (e)=>{
-    const sound = document.getElementById(this.state.bankOne.keyTrigger);
-    sound.onplay();
+  handleSound = id=>{
+    console.log(id)
+    // const sound = document.getElementById(id);
+    // console.log(sound)
+    
     
   }
   render() {
@@ -120,8 +124,10 @@ class App extends React.Component {
         newstyle ={ keyboardStyle }
         keyCode = {keyCode}
         sound = {url}
-        onClick = {this.handleSound}
+        onPlay = {this.handleSound}
         />)}
+        <div>---------------------------------------</div>
+        <SinglePlay />
         </div>
 
       </div>
