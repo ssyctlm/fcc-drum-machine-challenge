@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from './components/slider'
-import Toggle from './components/toggle'
+// import Slider from './components/slider'
+// import Toggle from './components/toggle'
 import KeyBoard from './components/keyboard'
 
 import SinglePlay from './components/singlePlay'
@@ -102,34 +102,24 @@ class App extends React.Component {
     url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
   }]
   }
-  handleSound = id=>{
-    console.log(id)
-    // const sound = document.getElementById(id);
-    // console.log(sound)
-    
-    
-  }
+
   render() {
     const keyboardStyle = false && "mouseDown"
     return (
       <div className="app">
-        <Slider />
-        <Toggle />
         <div className="keyboardContainer">
-        {this.state.bankOne.map(({id,keyTrigger,keyCode,url}) => 
+        {this.state.bankTwo.map(({keyCode,keyTrigger,id,url},index,arr) => 
         <KeyBoard 
-        key={id} 
-        letter={keyTrigger} 
-        id ={keyTrigger}
+        key={index} 
+        keyTrigger ={keyTrigger} 
+        id ={id}
         newstyle ={ keyboardStyle }
         keyCode = {keyCode}
         sound = {url}
-        onPlay = {this.handleSound}
         />)}
-        <div>---------------------------------------</div>
-        <SinglePlay />
         </div>
-
+        <hr />
+        <SinglePlay />
       </div>
     );
   }
