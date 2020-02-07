@@ -17,7 +17,7 @@ export default class KeyBoard extends Component{
     }
   }
   handleSound = e=>{
-    const sound = document.getElementById(this.props.id);
+    const sound = document.getElementById(this.props.keyTrigger);
     console.log(sound)
     sound.currentTime = 0;
     sound.play();
@@ -33,7 +33,7 @@ export default class KeyBoard extends Component{
         onClick = {this.handleSound}
         ><audio 
         className = 'clip'
-        id = {this.props.id} 
+        id = {this.props.keyTrigger} 
         src={this.props.sound} 
         type = "audio/mp3" 
         >

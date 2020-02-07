@@ -1,9 +1,8 @@
 import React from 'react';
-// import Slider from './components/slider'
-// import Toggle from './components/toggle'
+import Slider from './components/slider'
+import Toggle from './components/toggle'
 import KeyBoard from './components/keyboard'
 
-import SinglePlay from './components/singlePlay'
 class App extends React.Component {
   state ={
     aKeys:["Q","W","E","A","S","D","Z","X","C"],
@@ -100,14 +99,17 @@ class App extends React.Component {
     keyTrigger: 'C',
     id: 'Snare',
     url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
-  }]
+  }],
+    flagPower:true,
+    flagBank:true
   }
-
+  // handleClick = (flagname) => this.setState({ flagname: !this.state.flagname })
+  handleClick = (flagname,flag) => {this.setState({[flagname]:!flag})}
   render() {
     const keyboardStyle = false && "mouseDown"
     return (
-      <div className="app">
-        <div className="keyboardContainer">
+      <div className="app" id = "drum-machine">
+        <div className="drum-pad">
         {this.state.bankTwo.map(({keyCode,keyTrigger,id,url},index,arr) => 
         <KeyBoard 
         key={index} 
@@ -118,8 +120,30 @@ class App extends React.Component {
         sound = {url}
         />)}
         </div>
-        <hr />
-        <SinglePlay />
+        <div className="logo">
+          <div className="inner-logo">{'FCC'+String.fromCharCode(160)}</div>
+          <i className="inner-logo fa fa-free-code-camp"/>
+        </div>
+        <div className="controlPannel">
+
+          <Toggle 
+          key="flagPower"
+          title="Power"
+          flag = {this.state.flagPower}
+          flagReturn = 'flagPower'
+          onClick = {this.handleClick}
+          />
+          <div id="display"></div>
+          <Slider />
+          <Toggle 
+          key="flagBank"
+          title="Bank"
+          flag = {this.state.flagBank}
+          flagReturn = 'flagBank'
+          onClick = {this.handleClick}
+          />
+        </div>
+        
       </div>
     );
   }
