@@ -13,24 +13,25 @@ export default class KeyBoard extends Component{
   }
   handleKeyPress = e =>{
     if(e.keyCode ===this.props.keyCode){
-      this.handleSound()
+      this.props.onClick(this.props.keyTrigger)
     }
   }
-  handleSound = e=>{
-    const sound = document.getElementById(this.props.keyTrigger);
-    console.log(sound)
-    sound.currentTime = 0;
-    sound.play();
-    // const sound = document.getElementById(id);
-    // console.log(sound)
-  }
+  //method left up
+  // handleSound = ()=>{
+  //   const sound = document.getElementById(this.props.keyTrigger);
+  //   console.log(sound)
+  //   sound.currentTime = 0;
+  //   sound.play();
+  //   // const sound = document.getElementById(id);
+  //   // console.log(sound)
+  // }
   render(){
-    
+    const keyTrigger = this.props.keyTrigger;
     return (
       <React.Fragment>
         <div 
-        className={"keyboard " + this.props.newstyle }
-        onClick = {this.handleSound}
+        className="keyboard" 
+        onClick = {()=>this.props.onClick(keyTrigger)}
         ><audio 
         className = 'clip'
         id = {this.props.keyTrigger} 

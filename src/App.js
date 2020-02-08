@@ -101,23 +101,49 @@ class App extends React.Component {
     url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
   }],
     flagPower:true,
-    flagBank:true
+    flagBank:true,
+    displayContent: 'Drum',
+    volumn:0.5,
+
   }
-  // handleClick = (flagname) => this.setState({ flagname: !this.state.flagname })
-  handleClick = (flagname,flag) => {this.setState({[flagname]:!flag})}
+
+
+
+  //Methods
+  //- sound play method
+  handleSound = (id)=>{
+    const sound = document.getElementById(id);
+    if(this.state.flagPower){
+      console.log(sound);
+      sound.currentTime = 0;
+      sound.play();
+    }
+
+  }
+
+  //- button common switch
+  handleToggle = (flagname,flag) => {this.setState({[flagname]:!flag})}
+
+  //- volumn control 
+
+  //- switch bank
+  handleBankSwitch = ()=>this.state.flagBank? this.state.bankOne : this.state.bankTwo
+ 
   render() {
-    const keyboardStyle = false && "mouseDown"
+    // const keyboardStyle = false && "mouseDown"
+    const currentBank = this.handleBankSwitch()
     return (
       <div className="app" id = "drum-machine">
         <div className="drum-pad">
-        {this.state.bankTwo.map(({keyCode,keyTrigger,id,url},index,arr) => 
+        {currentBank.map(({keyCode,keyTrigger,id,url},index,arr) => 
         <KeyBoard 
         key={index} 
         keyTrigger ={keyTrigger} 
         id ={id}
-        newstyle ={ keyboardStyle }
+        // newstyle ={ keyboardStyle }
         keyCode = {keyCode}
         sound = {url}
+        onClick = {this.handleSound}
         />)}
         </div>
         <div className="logo">
@@ -131,16 +157,22 @@ class App extends React.Component {
           title="Power"
           flag = {this.state.flagPower}
           flagReturn = 'flagPower'
-          onClick = {this.handleClick}
+          onClick = {this.handleToggle}
+          text1 = "ON"
+          text2 = "OFF"
           />
-          <div id="display"></div>
-          <Slider />
+
+          <div id="display">{this.state.displayContent}</div>
+          
+          <Slider   />
           <Toggle 
           key="flagBank"
           title="Bank"
           flag = {this.state.flagBank}
           flagReturn = 'flagBank'
-          onClick = {this.handleClick}
+          onClick = {this.handleToggle}
+          text1 = "ONE"
+          text2 = "TWO"
           />
         </div>
         

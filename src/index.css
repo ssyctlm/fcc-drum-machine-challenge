@@ -329,3 +329,19 @@ input[type=range]:focus::-ms-fill-upper {
   background: rgb(223, 218, 218);
   font-weight: bold;
 }
+
+/* -------------------------------------------------------------------- */
+/* display */
+/* -------------------------------------------------------------------- */
+
+#display {
+  margin: 20px 0px;
+  height: 60px;
+  width: 240px;
+  background-color: rgba(49, 99, 236, 0.4);
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 60px;
+  font-weight: bold;
+}
