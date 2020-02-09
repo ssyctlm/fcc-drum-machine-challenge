@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
 
 export default class Slider extends React.Component {
-    state = {
-        value: 50,
-    }
+    // state = {
+    //     value: 50,
+    // }
     
-    handleChange = (e) => this.setState({ value: e.target.value })
+    // handleChange = (e) => this.setState({ value: e.target.value })
     render() {
       return (
-        <div>
+        <div className="sliderGroup">
+        
           <input style={{
-              height: " 150px",
-              width: "300px"
-          }} type="range" min={0} max={100} step="1" value={this.state.value} onChange={this.handleChange} />
-
-          </div>
+              height: " 0px",
+              width: "260px"
+          }} type="range" min="0.01" max="1" step="0.01" value={this.props.volumn} onChange={e=>this.props.onChange(e.target.value)} />
+          
+        
+        <button
+        className = "mute"
+        onClick = {()=>this.props.onClick()}
+        >Mute</button>
+        </div>
         );
     }
 }

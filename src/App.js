@@ -102,38 +102,56 @@ class App extends React.Component {
   }],
     flagPower:true,
     flagBank:true,
-    displayContent: 'Drum',
+    displayContent: ' ',
     volumn:0.5,
 
   }
 
-
-
   //Methods
   //- sound play method
-  handleSound = (id)=>{
-    const sound = document.getElementById(id);
+  handleSound = (trigger,id)=>{
+    const sound = document.getElementById(trigger);
     if(this.state.flagPower){
       console.log(sound);
       sound.currentTime = 0;
       sound.play();
+      this.showDisplay(id);
+      setTimeout(()=>this.showDisplay(""),700);      
     }
 
   }
 
   //- button common switch
-  handleToggle = (flagname,flag) => {this.setState({[flagname]:!flag})}
+  handleToggle = (flagname,flag,text1,text2) => {
+    const text = flag ? text1 : text2;
+    this.setState({[flagname]:!flag , displayContent:text})
+  
+  
+  }
 
-  //- volumn control 
-
+  //- volumn control
+  handleVolumn = volumn => {if(this.state.flagPower){this.setState({ volumn: volumn, displayContent: (`Volume:${Math.round(volumn*100)}`)})}}
+  handleMute = ()=>this.setState({volumn:0, displayContent: "Mute"})
   //- switch bank
-  handleBankSwitch = ()=>this.state.flagBank? this.state.bankOne : this.state.bankTwo
- 
+  handleBankSwitch = ()=>
+  {return this.state.flagBank? this.state.bankOne : this.state.bankTwo}
+  //- display 
+  showDisplay = (text)=>{if(this.state.flagPower){this.setState({displayContent:text})}}
   render() {
     // const keyboardStyle = false && "mouseDown"
     const currentBank = this.handleBankSwitch()
+    // const clips = [].slice.call(document.getElementsByClassName('clip'));
+    const clips1 = [].slice.call(document.getElementsByTagName('Audio'));
+    clips1.forEach(sound =>{sound.volume = this.state.volumn})
     return (
       <div className="app" id = "drum-machine">
+        <div className="logo">
+          <div className="wrapper">
+          <div className="inner-logo">{'FCC'+String.fromCharCode(160)}</div>
+          <i className="inner-logo fa fa-free-code-camp"/>
+          </div>
+          
+        </div>
         <div className="drum-pad">
         {currentBank.map(({keyCode,keyTrigger,id,url},index,arr) => 
         <KeyBoard 
@@ -144,14 +162,12 @@ class App extends React.Component {
         keyCode = {keyCode}
         sound = {url}
         onClick = {this.handleSound}
+        soundVolumn = {this.state.volumn}
         />)}
         </div>
-        <div className="logo">
-          <div className="inner-logo">{'FCC'+String.fromCharCode(160)}</div>
-          <i className="inner-logo fa fa-free-code-camp"/>
-        </div>
         <div className="controlPannel">
-
+          <div id="display">{this.state.displayContent}</div>
+          <div className="buttonGroup">
           <Toggle 
           key="flagPower"
           title="Power"
@@ -161,10 +177,6 @@ class App extends React.Component {
           text1 = "ON"
           text2 = "OFF"
           />
-
-          <div id="display">{this.state.displayContent}</div>
-          
-          <Slider   />
           <Toggle 
           key="flagBank"
           title="Bank"
@@ -174,6 +186,13 @@ class App extends React.Component {
           text1 = "ONE"
           text2 = "TWO"
           />
+          </div>
+          <Slider
+          onChange = {this.handleVolumn}
+          volumn = {this.state.volumn}
+          onClick = {this.handleMute}
+          />
+
         </div>
         
       </div>

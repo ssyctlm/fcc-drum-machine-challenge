@@ -13,7 +13,7 @@ export default class KeyBoard extends Component{
   }
   handleKeyPress = e =>{
     if(e.keyCode ===this.props.keyCode){
-      this.props.onClick(this.props.keyTrigger)
+      this.props.onClick(this.props.keyTrigger,this.props.id)
     }
   }
   //method left up
@@ -27,11 +27,12 @@ export default class KeyBoard extends Component{
   // }
   render(){
     const keyTrigger = this.props.keyTrigger;
+    const id = this.props.id
     return (
       <React.Fragment>
         <div 
         className="keyboard" 
-        onClick = {()=>this.props.onClick(keyTrigger)}
+        onClick = {()=>this.props.onClick(keyTrigger,id)}
         ><audio 
         className = 'clip'
         id = {this.props.keyTrigger} 
